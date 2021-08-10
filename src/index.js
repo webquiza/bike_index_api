@@ -35,7 +35,7 @@ $(document).ready(function() {
         style="border:0"
         loading="lazy"
         allowfullscreen
-        src="https://www.google.com/maps/embed/v1/place?key=AIzaSyAjCRHRQqmp9LmSoK4HNXjvWESoxtgBOKs&q=${response.bikes[0].stolen_location}">
+        src="https://www.google.com/maps/embed/v1/place?key=${process.env.API_KEY}&q=${response.bikes[0].stolen_location}">
       </iframe>`);
       });
   });
