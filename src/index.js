@@ -2,16 +2,41 @@ import $ from 'jquery';
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './css/styles.css';
-import Triangle from './js/example.js';
+import { searchBike } from './js/bike.js';
+
+function displayData(response) {
+  console.log(response.bikes[0].manufacturer_name);
+  $('#stolen-locale').text(`The last known location: ${response.bikes[0].stolen_location}`);
+  $('#manufac').text(`Manufacturer: ${response.bikes[0].manufacturer_name}`);
+  if (response.bikes[0].year === null) {
+    $('#bikemodelyear').text('The model year was not provided');
+  }else {
+    $('#bikemodelyear').text(`Bikes model year: ${response.bikes[0].year}`);
+  }
+}
+
+function clearFields() {
+  $('#zipcode').val("");
+  $('#distance').val("");
+}
 
 $(document).ready(function() {
-  $('#triangle-checker-form').submit(function(event) {
+  $('#find').click(function(event) {
     event.preventDefault();
-    const length1 = parseInt($('#length1').val());
-    const length2 = parseInt($('#length2').val());
-    const length3 = parseInt($('#length3').val());
-    const triangle = new Triangle(length1, length2, length3);
-    const response = triangle.checkType();
-    $('#response').append(`<p>${response}</p>`);
+    let zipCode = $('#zipcode').val();
+    let distance = $('#distance').val();
+    clearFields();
+    searchBike.findBike(zipCode, distance)
+      .then(function(response) {
+        displayData(response);
+        $('#map').append(`<iframe
+        width="600"
+        height="450"
+        style="border:0"
+        loading="lazy"
+        allowfullscreen
+        src="https://www.google.com/maps/embed/v1/place?key=AIzaSyAjCRHRQqmp9LmSoK4HNXjvWESoxtgBOKs&q=${response.bikes[0].stolen_location}">
+      </iframe>`);
+      });
   });
 });

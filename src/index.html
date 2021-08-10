@@ -1,20 +1,36 @@
 <!DOCTYPE html>
 <html lang="en-US">
+
 <head>
-  <title>example-env-img</title>
+    <title>example-env-img</title>
 </head>
+
 <body>
-  <img src="assets/images/squirrel.jpg" alt="squirrel chewing on a nut">
-  <h3>Enter three lengths to determine if they can make a triangle.</h3>
-  <form id="triangle-checker-form">
-    <label for="length1">Enter a number:</label>
-    <input id="length1" type="number">
-    <label for="length2">Enter a number:</label>
-    <input id="length2" type="number">
-    <label for="length3">Enter a number:</label>
-    <input id="length3" type="number">
-    <button type="submit">Submit</button>
-  </form>
-  <ul id="response"></ul>
+    <div class="container">
+        <div class="center">
+            <img src="assets/images/stolen_bike.jpg" alt="bike parts">
+            <h1>Help me find my bike!!!</h1>
+
+            <form id="parameters">
+                <label for="zipcode">Zipcode</label>
+                <input type="number" id="zipcode">
+                <br>
+                <label for="distance">Search Radius(miles)</label>
+                <input type="number" id="distance">
+                <button id="find" type="click" class="btn btn-warning">Find Me!</button>
+            </form>
+            <div class="">
+                <h4 id="stolen-locale">
+                    </h3>
+                    <h4 id="manufac">
+                        </h3>
+                        <h4 id="bikemodelyear">
+                            </h3>
+            </div>
+
+            <div id="map"></div>
+        </div>
+    </div>
 </body>
+
 </html>
